@@ -47,12 +47,9 @@ if __name__ == '__main__':
     prompt = ChatPromptTemplate.from_messages([
         ("system", "You are a helpful assistant. "),
         MessagesPlaceholder(variable_name="chat_history", optional=True),
-        ("human", "Given is a quest name {quest}. "
-                  "Go to https://ffxiv.consolegameswiki.com/wiki/{quest} and find the previous quests. "
-                  "Let's say the previous quest is 'some_quest'. Then, find the previous quest"
-                  "of 'some_quest', and continue this workflow, until 10 recursive previous quests are found (if "
-                  "exists)."
-                  "Give me all previous quests which is found."),
+        ("human", "Go to https://ffxiv.consolegameswiki.com/wiki/{quest} "
+                  "and find previous quests of {quest} recursively. "
+                  "Give me at least 5 preconditioned previous quests for the quest {quest}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
