@@ -1,16 +1,17 @@
 from typing import Sequence
 
-from langchain.agents.openai_tools.base import create_openai_retrieval_tools_agent
 from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 from langchain_community.tools.playwright.utils import (
     create_sync_playwright_browser,
 )
-from langchain.agents import AgentExecutor
-
+from langchain.agents.format_scratchpad.openai_tools import (
+    format_to_openai_tool_messages,
+)
+from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
 
-from langchain_community.agent_toolkits.playwright.toolkit import RetrievalPlayWrightBrowserToolkit
+from langchain_community.agent_toolkits.playwright.toolkit import PlayWrightBrowserToolkit
 
 
 if __name__ == '__main__':
@@ -24,11 +25,11 @@ if __name__ == '__main__':
     ])
 
     sync_browser = create_sync_playwright_browser()
-    toolkit = RetrievalPlayWrightBrowserToolkit.from_browser(sync_browser=sync_browser)
+    toolkit = PlayWrightBrowserToolkit.from_browser(sync_browser=sync_browser)
     tools = toolkit.get_tools()
     llm = ChatOpenAI(model="gpt-4", temperature=0)
 
-    agent = create_openai_retrieval_tools_agent(llm, tools, prompt)
+    agent = create_openai_tools_agent(llm, tools, prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
     command = {
         "quest": "On_Rough_Seas"
