@@ -1,9 +1,6 @@
-from typing import Sequence
-
 from langchain.agents.openai_tools.base import create_openai_retrieval_tools_agent
-from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 from langchain_community.tools.playwright.utils import (
-    create_sync_playwright_browser,
+    create_sync_playwright_browser
 )
 from langchain.agents import AgentExecutor
 

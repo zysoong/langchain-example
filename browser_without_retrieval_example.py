@@ -1,11 +1,5 @@
-from typing import Sequence
-
-from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
 from langchain_community.tools.playwright.utils import (
-    create_sync_playwright_browser,
-)
-from langchain.agents.format_scratchpad.openai_tools import (
-    format_to_openai_tool_messages,
+    create_sync_playwright_browser
 )
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
