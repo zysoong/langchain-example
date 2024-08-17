@@ -1,3 +1,0 @@
-[submodule "langchain"]
-	path = langchain
-	url = https://github.com/zysoong/langchain.git
