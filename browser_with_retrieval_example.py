@@ -10,6 +10,7 @@ from langchain.agents.format_scratchpad.openai_tools import (
 from langchain.agents import AgentExecutor
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.prompts.injector import PromptInjector
 from langchain_core.runnables import Runnable, RunnablePassthrough
 from langchain_core.tools import BaseTool
 from langchain_core.utils.function_calling import convert_to_openai_tool
@@ -35,6 +36,7 @@ def create_openai_retrieval_tools_agent(llm: BaseLanguageModel, tools: Sequence[
                 agent_scratchpad=create_user_message_chain
             )
             | prompt
+            | PromptInjector(inject_objects=tools, pass_on_injection_fail=True)
             | llm_with_tools
             | OpenAIToolsAgentOutputParser()
     )
