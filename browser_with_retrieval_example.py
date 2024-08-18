@@ -15,8 +15,8 @@ if __name__ == '__main__':
         ("system", "You are a helpful assistant. "),
         MessagesPlaceholder(variable_name="chat_history", optional=True),
         ("human", "Go to https://ffxiv.consolegameswiki.com/wiki/{quest} "
-                  "and find previous quests of {quest} recursively. "
-                  "Give me at least 5 preconditioned previous quests for the quest {quest}"),
+                  "and find previous quests recursively. "
+                  "Response with 5 previous quests of {quest}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
