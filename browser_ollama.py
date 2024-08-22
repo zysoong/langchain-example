@@ -1,6 +1,6 @@
 from typing import Sequence
 
-from langchain.agents.output_parsers.openai_tools import OpenAIToolsAgentOutputParser
+from langchain.agents.output_parsers.ollama_tools import OllamaToolsAgentOutputParser
 from langchain_community.agent_toolkits import PlayWrightBrowserToolkit
 from langchain_community.tools.playwright.utils import (
     create_sync_playwright_browser,
@@ -15,10 +15,9 @@ from langchain_core.runnables import Runnable, RunnablePassthrough
 from langchain_core.tools import BaseTool
 from langchain_core.utils.function_calling import convert_to_openai_tool
 from langchain_experimental.llms.ollama_functions import ChatOllama
-from langchain_openai import ChatOpenAI
 
 
-def create_openai_tools_agent_and_inject_prompts(
+def create_ollama_tools_agent(
         llm: BaseLanguageModel, tools: Sequence[BaseTool], prompt: ChatPromptTemplate
 ) -> Runnable:
     """Create an agent that uses OpenAI tools.
@@ -50,32 +49,26 @@ def create_openai_tools_agent_and_inject_prompts(
             )
             | prompt
             | llm_with_tools
-            | OpenAIToolsAgentOutputParser()
+            | OllamaToolsAgentOutputParser()
     )
     return agent
 
 
 if __name__ == '__main__':
     prompt = ChatPromptTemplate.from_messages([
-        ("system", "You are a helpful assistant. "),
         MessagesPlaceholder(variable_name="chat_history", optional=True),
-        ("human", "Given is a quest name {quest}. "
-                  "Go to https://ffxiv.consolegameswiki.com/wiki/{quest} and find the previous quests. "
-                  "Let's say the previous quest is 'some_quest'. Then, find the previous quest"
-                  "of 'some_quest', and continue this workflow, until 10 recursive previous quests are found (if "
-                  "exists)."
-                  "Give me all previous quests which is found."),
+        ("user",
+         "Go to https://ffxiv.consolegameswiki.com/wiki/{quest} "
+         "and find the previous quests recursively. "),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
     sync_browser = create_sync_playwright_browser()
     toolkit = PlayWrightBrowserToolkit.from_browser(sync_browser=sync_browser)
     tools = toolkit.get_tools()
-    #llm = ChatOpenAI(model="llama3.1")
-    #llm = OllamaLLM(model="llama3.1")
     llm = ChatOllama(model="llama3.1")
 
-    agent = create_openai_tools_agent_and_inject_prompts(llm, tools, prompt)
+    agent = create_ollama_tools_agent(llm, tools, prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
     command = {
         "quest": "On_Rough_Seas"
