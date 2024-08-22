@@ -20,7 +20,7 @@ from langchain_experimental.llms.ollama_functions import ChatOllama
 def create_ollama_tools_agent(
         llm: BaseLanguageModel, tools: Sequence[BaseTool], prompt: ChatPromptTemplate
 ) -> Runnable:
-    """Create an agent that uses OpenAI tools.
+    """Create an agent that uses Ollama tools.
     The prompts will be injected to the tools
     automatically.
     Check the documentation of 'create_openai_tools_agent'
