@@ -14,7 +14,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import Runnable, RunnablePassthrough
 from langchain_core.tools import BaseTool
 from langchain_core.utils.function_calling import convert_to_openai_tool
-from langchain_experimental.llms.ollama_functions import ChatOllama
+from langchain_ollama.chat_models import ChatOllama
 
 
 def create_ollama_tools_agent(
