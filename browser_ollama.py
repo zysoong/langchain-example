@@ -6,10 +6,10 @@ from langchain_community.tools.playwright.utils import (
 from langchain.agents import AgentExecutor
 from langchain_ollama.chat_models import ChatOllama
 from langchain_wire.agent.ollama_tools import create_ollama_tools_agent
-from prompt import ffxiv_previous_request_prompt
+from prompt import *
 
 if __name__ == '__main__':
-    prompt = ffxiv_previous_request_prompt
+    prompt = ffxiv_previous_request_prompt_ollama
 
     sync_browser = create_sync_playwright_browser()
     toolkit = PlayWrightBrowserToolkit.from_browser(sync_browser=sync_browser)

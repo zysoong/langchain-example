@@ -5,10 +5,10 @@ from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain_openai import ChatOpenAI
 
 from langchain_community.agent_toolkits.playwright.toolkit import PlayWrightBrowserToolkit
-from prompt import ffxiv_previous_request_prompt
+from prompt import *
 
 if __name__ == '__main__':
-    prompt = ffxiv_previous_request_prompt
+    prompt = ffxiv_previous_request_prompt_openai
 
     sync_browser = create_sync_playwright_browser()
     toolkit = PlayWrightBrowserToolkit.from_browser(sync_browser=sync_browser)
