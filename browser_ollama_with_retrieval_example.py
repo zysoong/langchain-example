@@ -1,3 +1,4 @@
+from langchain_community.agent_toolkits import PlayWrightBrowserToolkit
 from langchain_community.tools.playwright.utils import (
     create_sync_playwright_browser,
 )
@@ -14,7 +15,7 @@ if __name__ == '__main__':
     sync_browser = create_sync_playwright_browser()
     toolkit = RetrievalPlayWrightBrowserToolkit.from_browser(sync_browser=sync_browser)
     tools = toolkit.get_tools()
-    llm = ChatOllama(model="mistral-nemo", temparature=0.7)
+    llm = ChatOllama(model="mistral-nemo", temperature=0.0)
 
     agent = create_ollama_tools_agent_and_inject_prompts(llm, tools, prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
