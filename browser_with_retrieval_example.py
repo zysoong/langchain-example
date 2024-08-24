@@ -1,4 +1,4 @@
-from langchain.agents.openai_tools.base import create_openai_tools_agent_and_inject_prompts
+from langchain_wire.agent.openai_tools import create_openai_tools_agent_and_inject_prompts
 from langchain_community.tools.playwright.utils import (
     create_sync_playwright_browser
 )
@@ -7,7 +7,7 @@ from langchain.agents import AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
 
-from langchain_community.agent_toolkits.playwright.toolkit import RetrievalPlayWrightBrowserToolkit
+from langchain_wire.toolkit.toolkit import RetrievalPlayWrightBrowserToolkit
 
 
 if __name__ == '__main__':

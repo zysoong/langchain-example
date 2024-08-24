@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = []
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -24,6 +25,7 @@ langchain-community = {path = "langchain/libs/community"}
 langchain = {path = "langchain/libs/langchain"}
 langchain-experimental = {path = "langchain/libs/experimental"}
 langchain-openai = {path = "langchain/libs/partners/openai"}
+langchain-wire = {path = "langchain-wire"}
 
 [build-system]
 requires = ["poetry-core"]
