@@ -1,3 +1,6 @@
 [submodule "langchain"]
 	path = langchain
 	url = https://github.com/zysoong/langchain.git
+[submodule "langchain-wire"]
+	path = langchain-wire
+	url = https://github.com/zysoong/langchain-wire.git
