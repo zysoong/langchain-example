@@ -12,6 +12,18 @@ lxml = "^5.3.0"
 faiss-cpu = "^1.8.0.post1"
 pytest = "^8.3.2"
 
+[tool.poetry.group.release.dependencies]
+langchain = "^0.2.14"
+langchain-wire = {path = "langchain-wire"}
+
+
+[tool.poetry.group.dev.dependencies]
+langchain-core = {path = "langchain/libs/core"}
+langchain-text-splitters = {path = "langchain/libs/text-splitters"}
+langchain-community = {path = "langchain/libs/community"}
+langchain = {path = "langchain/libs/langchain"}
+langchain-experimental = {path = "langchain/libs/experimental"}
+langchain-openai = {path = "langchain/libs/partners/openai"}
 
 [build-system]
 requires = ["poetry-core"]
