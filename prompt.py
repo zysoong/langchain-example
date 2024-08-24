@@ -1,9 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 ffxiv_previous_request_prompt_ollama = ChatPromptTemplate.from_messages([
-        ("system", "You are requested to perform some browser operations to websites. The operations have been "
-                   "altered to yield the result of the browser operations. "
-                   "Use the provided tools to answer the question. "
+        ("system", "Use the provided tools to answer the question. "
                    "Only give the arguments in your answer which followed the property schema of the provided tool. "
                    ""),
         MessagesPlaceholder(variable_name="chat_history", optional=True),
