@@ -2,7 +2,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 ffxiv_previous_request_prompt_ollama = ChatPromptTemplate.from_messages([
         ("system", "Use the provided tools to answer the question. "
-                   "Only give the arguments in your answer which followed the property schema of the provided tool. "
+                   "Only give the arguments in your answer if it was defined with the tool near its description"
                    ""),
         MessagesPlaceholder(variable_name="chat_history", optional=True),
         ("user",
