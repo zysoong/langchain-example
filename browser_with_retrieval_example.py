@@ -3,22 +3,12 @@ from langchain_community.tools.playwright.utils import (
     create_sync_playwright_browser
 )
 from langchain.agents import AgentExecutor
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
-
 from langchain_wire.toolkit.toolkit import RetrievalPlayWrightBrowserToolkit
-
+from prompt import ffxiv_previous_request_prompt
 
 if __name__ == '__main__':
-    prompt = ChatPromptTemplate.from_messages([
-        ("system", "You are a helpful assistant. "),
-        MessagesPlaceholder(variable_name="chat_history", optional=True),
-        ("human", "Go to https://ffxiv.consolegameswiki.com/wiki/{quest} "
-                  "and find previous quests recursively. "
-                  "Response with 5 previous quests of {quest}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad"),
-    ])
+    prompt = ffxiv_previous_request_prompt
 
     sync_browser = create_sync_playwright_browser()
     toolkit = RetrievalPlayWrightBrowserToolkit.from_browser(sync_browser=sync_browser)
