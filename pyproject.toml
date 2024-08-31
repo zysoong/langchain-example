@@ -26,6 +26,7 @@ langchain = {path = "langchain/libs/langchain"}
 langchain-experimental = {path = "langchain/libs/experimental"}
 langchain-openai = {path = "langchain/libs/partners/openai"}
 langchain-wire = {path = "langchain-wire"}
+beautifulsoup4 = "^4.12.3"
 
 [build-system]
 requires = ["poetry-core"]
